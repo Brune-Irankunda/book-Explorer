@@ -1,18 +1,43 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Favorites | Book Explorer</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Favorites | Book Explorer</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
-<body class="min-h-screen bg-slate-50 text-slate-800">
-  <header id="nav"></header>
-  <main class="mx-auto max-w-6xl px-4 pt-8">
-    <h1 class="mb-6 text-3xl font-bold">Your favorites</h1>
-    <div id="favorites-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+
+<body class="min-h-screen bg-stone-50 text-slate-800">
+  <header class="border-b border-stone-200 bg-white">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
+      <a href="./index.html" class="text-2xl font-extrabold">
+        Book<span class="text-amber-600">Explorer.</span>
+      </a>
+      <a href="./index.html" class="font-medium hover:text-amber-700">
+        Home
+      </a>
+    </nav>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-5 py-12">
+    <h1 class="text-4xl font-extrabold text-slate-900">
+      My Favorite Books
+    </h1>
+    <p class="mt-3 text-slate-600">
+      Keep the books you love in one place.
+    </p>
+
+    <div id="favorites-list"
+         class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    </div>
+
+    <p id="empty-message" class="mt-8 text-slate-600" hidden>
+      You have no favorite books yet.
+    </p>
   </main>
-  <footer id="footer"></footer>
-  <script type="module" src="js/favoritesPage.js"></script>
+
+  <script type="module" src="./js/favorites.js"></script>
 </body>
 </html>
