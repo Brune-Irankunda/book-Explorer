@@ -1,81 +1,29 @@
-const STORAGE_KEY = "bookFavorites";
-const booksGrid = document.querySelector("#books-grid");
-const statusMessage = document.querySelector("#status-message");
 
-let books = [];
+const BASE_URL = "https://openlibrary.org";
 
-function getFavorites() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-  } catch {
-    return [];
+export async function fetchBooks(query = "romance") {
+  const url = `${BASE_URL}/search.json?q=${encodeURIComponent(query)}&limit=24`;
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch books: ${response.status}`);
   }
+
+  const data = await response.json();
+
+  return data.docs.map((book) => ({
+    id: book.key,
+    title: book.title || "Untitled book",
+    author: book.author_name?.join(", ") || "Unknown author",
+    year: book.first_publish_year || "Year unknown",
+    coverId: book.cover_i || null,
+    subjects: book.subject?.slice(0, 10) || []
+  }));
 }
 
-function renderBooks(items) {
-  if (!booksGrid) return;
+export function getCoverUrl(coverId) {
+  if (!coverId) return "https://placehold.co/160x220?text=No+Cover";
 
-  booksGrid.innerHTML = "";
-
-  items.forEach((book) => {
-    const card = document.createElement("article");
-    card.className =
-      "rounded-xl border border-stone-200 bg-white p-5 shadow-sm";
-
-    const title = document.createElement("h2");
-    title.className = "text-xl font-bold";
-    title.textContent = book.title;
-
-    const author = document.createElement("p");
-    author.className = "mt-2 text-slate-600";
-    author.textContent = `Author: ${book.author}`;
-
-    const year = document.createElement("p");
-    year.className = "mt-1 text-sm text-slate-500";
-    year.textContent = `Year: ${book.year}`;
-
-    const favoriteButton = document.createElement("button");
-    favoriteButton.className =
-      "mt-4 rounded-lg bg-amber-600 px-4 py-2 text-white hover:bg-amber-700";
-    favoriteButton.textContent = "Add to Favorites";
-
-    favoriteButton.addEventListener("click", () => {
-      const favorites = getFavorites();
-      const alreadySaved = favorites.some((item) => item.id === book.id);
-
-      if (alreadySaved) {
-        favoriteButton.textContent = "Already in Favorites";
-        return;
-      }
-
-      favorites.push(book);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
-      favoriteButton.textContent = "Added to Favorites";
-    });
-
-    card.append(title, author, year, favoriteButton);
-    booksGrid.appendChild(card);
-  });
+  return `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
 }
-
-async function loadBooks(query = "javascript") {
-  try {
-    if (statusMessage) statusMessage.textContent = "Loading books...";
-
-    books = await fetchBooks(query);
-    renderBooks(books);
-
-    if (statusMessage) {
-      statusMessage.textContent = books.length
-        ? `${books.length} books found.`
-        : "No books found.";
-    }
-  } catch (error) {
-    if (statusMessage) {
-      statusMessage.textContent = "Could not load books. Please try again.";
-    }
-    console.error(error);
-  }
-}
-
-loadBooks();
