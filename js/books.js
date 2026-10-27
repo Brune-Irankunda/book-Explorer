@@ -81,4 +81,8 @@ async function loadBooks(query = "javascript") {
   }
 }
 
-loadBooks();
+
+const params = new URLSearchParams(window.location.search);
+const category = params.get("category") || "love";
+
+loadBooks(category);
