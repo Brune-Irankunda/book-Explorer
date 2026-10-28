@@ -1,7 +1,7 @@
 
 const BASE_URL = "https://openlibrary.org";
 
-export async function fetchBooks(query = "javascript") {
+export async function fetchBooks(query = "romance") {
   const url = `${BASE_URL}/search.json?q=${encodeURIComponent(query)}&limit=24`;
 
   try {
@@ -19,7 +19,7 @@ export async function fetchBooks(query = "javascript") {
       author: book.author_name?.join(", ") || "Unknown author",
       year: book.first_publish_year || "Year unknown",
       coverId: book.cover_i || null,
-      subjects: book.subject?.slice(0, 10) || []
+      subjects: book.subject?.slice(0, 10) || [],
     }));
   } catch (error) {
     console.error("Error fetching books:", error);
@@ -30,5 +30,5 @@ export async function fetchBooks(query = "javascript") {
 export function getCoverUrl(coverId) {
   if (!coverId) return null;
 
-  return `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
+  return `${BASE_URL}/covers/${coverId}-M.jpg`;
 }

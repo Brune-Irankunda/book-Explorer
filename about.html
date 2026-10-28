@@ -1,23 +1,93 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About | Book Explorer</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Book Explorer</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #faf7f2;
+      color: #333;
+    }
+
+    header {
+      background-color: #78350f;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 10px;
+    }
+
+    main {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 25px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px #ddd;
+    }
+
+    h2 {
+      color: #92400e;
+    }
+
+    footer {
+      background: #78350f;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+  </style>
 </head>
-<body class="min-h-screen bg-slate-50 text-slate-800">
-  <header id="nav"></header>
-  <main class="mx-auto max-w-2xl px-4 pt-8">
-    <h1 class="mb-4 text-3xl font-bold">About Book Explorer</h1>
-    <p class="mb-3">Book Explorer lets you browse and search books using the Open Library API, then save favorites that stay on your device between visits.</p>
-    <p class="mb-3">Built with HTML, Tailwind CSS, and vanilla JavaScript ES modules. No build tools required.</p>
-    <ul class="list-disc pl-6">
-      <li>Home: browse and search books</li>
-      <li>Favorites: books you saved (stored in localStorage)</li>
+
+<body>
+  <header>
+    <h1>Book Explorer</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="books.html">Books</a>
+      <a href="favorites.html">Favorites</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>About Book Explorer</h2>
+    <p>
+      Book Explorer is a website that helps readers discover books
+      from different categories, such as romance, science, history,
+      fantasy, and business.
+    </p>
+
+    <h2>Our Features</h2>
+    <ul>
+      <li>Explore different books.</li>
+      <li>Search for books.</li>
+      <li>View book information and covers.</li>
+      <li>Save favorite books.</li>
     </ul>
+
+    <h2>Technologies Used</h2>
+    <p>HTML, CSS, JavaScript, and the Open Library API.</p>
+
+    <h2>Our Goal</h2>
+    <p>
+      Our goal is to make discovering books easy and enjoyable
+      while practicing web development skills.
+    </p>
   </main>
-  <footer id="footer"></footer>
-  <script type="module" src="js/about.js"></script>
+
+  <footer>
+    <p>Book Explorer © 2026</p>
+  </footer>
 </body>
 </html>
