@@ -108,7 +108,8 @@ async function loadBooks(query = "romance") {
   }
 }
 
-// Read the selected category from the URL
+
+ // Read the selected category from the URL
 const params = new URLSearchParams(window.location.search);
 const category = params.get("category") || "love";
 
@@ -139,4 +140,3 @@ if (searchForm && searchInput) {
     }
   });
 }
-
