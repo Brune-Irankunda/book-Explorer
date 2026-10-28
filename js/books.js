@@ -124,3 +124,19 @@ const categorySearchTerms = {
 };
 
 loadBooks(categorySearchTerms[category] || category);
+
+const searchForm = document.querySelector("#search-form");
+const searchInput = document.querySelector("#search-input");
+
+if (searchForm && searchInput) {
+  searchForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const title = searchInput.value.trim();
+
+    if (title) {
+      loadBooks(title);
+    }
+  });
+}
+
